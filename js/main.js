@@ -289,10 +289,14 @@ $(function(){
 		    	mapOptions);
 
 			this.bounds = new google.maps.LatLngBounds();
-
-			service = new google.maps.places.PlacesService(this.map);
-
 			this.infoWin;
+
+			this.getPlaces();
+		},
+
+		getPlaces: function() {
+			// find bio locations on the google map
+			var service = new google.maps.places.PlacesService(this.map);
 			var locations = octopus.getMapLocations();
 			var locLen = locations.length;
 
@@ -310,13 +314,11 @@ $(function(){
 		    }
 		},
 
-
 		createMarker: function(placeData) {
+		    // places markers on the map
 		    var lat = placeData.geometry.location.lat();
 		    var lon = placeData.geometry.location.lng();
 		    var name = placeData.formatted_address;
-		    //var bounds = new google.maps.LatLngBounds();
-		    //console.log(bounds);
   			var marker = new google.maps.Marker({
 			    map: this.map,
 			    position: placeData.geometry.location,
@@ -328,7 +330,6 @@ $(function(){
 		    });
 
 		    // marker click listener
-
 		    google.maps.event.addListener(marker, 'click', function() {
 			    // first close any previously opened info windows
 			    if (viewMap.infoWin) {
