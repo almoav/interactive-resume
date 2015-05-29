@@ -173,7 +173,7 @@ $(function(){
 			$("#header").prepend(formattedName);
 
 			// top contacts
-			for (contact in bio.contacts){
+			for (var contact in bio.contacts){
 				var formattedContact = HTMLcontactGeneric.replace("%contact%", contact);
 				formattedContact = formattedContact.replace("%data%", bio.contacts[contact]);
 				$("#topContacts").append(formattedContact);
@@ -182,7 +182,7 @@ $(function(){
 
 			// bio pic
 			var formattedPic = HTMLbioPic.replace("%data%", bio.biopic);
-			$("#header").append(formattedPic)
+			$("#header").append(formattedPic);
 
 			// welcome msg
 			var formattedWelcome = HTMLwelcomeMsg.replace("%data%", bio.welcomessage);
@@ -190,7 +190,7 @@ $(function(){
 
 			// skills
 			$("#header").append(HTMLskillsStart);
-			for (skill in bio.skills){
+			for (var skill in bio.skills){
 				var formattedSkill = HTMLskills.replace("%data%", bio.skills[skill]);
 				$("#skills").append(formattedSkill);
 			}
@@ -199,7 +199,7 @@ $(function(){
 		displayWork: function() {
 			var work = octopus.getWork();
 
-			for (job in work.jobs){
+			for (var job in work.jobs){
 				$("#workExperience").append(HTMLworkStart);
 				var entry = work.jobs[job];
 				var formattedEmployer = HTMLworkEmployer.replace("%data%", entry.employer);
@@ -219,7 +219,7 @@ $(function(){
 		displayProjects: function() {
 			var projects = octopus.getProjects();
 
-			for (project in projects){
+			for (var project in projects){
 				var entry = projects[project];
 				if (typeof entry.title != "undefined"){
 
@@ -233,7 +233,7 @@ $(function(){
 					$(".project-entry:last").append(formattedDates);
 					$(".project-entry:last").append(formattedDescription);
 
-					for (image in entry.images){
+					for (var image in entry.images){
 						var formattedImage = HTMLprojectImage.replace("%data%", entry.images[image]);
 					}
 				}
@@ -244,7 +244,7 @@ $(function(){
 			var education = octopus.getEducation();
 
 			// undergrad
-			for (school in education.schools){
+			for (var school in education.schools){
 				$("#education").append(HTMLschoolStart);
 				var entry = education.schools[school];
 				var formattedSchoolName = HTMLschoolName.replace("%data%", entry.name);
@@ -262,7 +262,7 @@ $(function(){
 
 			// online classes
 			$("#education").append(HTMLonlineClasses);
-			for (onlineCourse in education["online courses"]){
+			for (var onlineCourse in education["online courses"]){
 				$("#education").append(HTMLschoolStart);
 				var entry = education["online courses"][onlineCourse];
 				var formattedTitle = HTMLonlineTitle.replace("%data%", entry.title);
@@ -349,4 +349,4 @@ $(function(){
 	};
 	octopus.init();
 	window.onLoad = viewMap.init();
-})
+});
